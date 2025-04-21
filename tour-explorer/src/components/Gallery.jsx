@@ -26,8 +26,40 @@ const TourList = ({ tours, setTours, onRemove }) => {
         fetchTours();
     }, []); //Use useEffec to call the API when the component mounts
 
-    //Render loading state
+    //Render loading state for API call
     if (loading) {
         return <h2>Loading...</h2>;
     }
-}
+
+    //Render error state for API call
+    if (error) {
+        return <h2>Something went wrong.</h2>;
+    }
+
+    //Render if there are no tours available
+    if (tours.length === 0) {
+        return (
+            <div className="no-tours">
+                <h2>No Tours Available</h2>
+                <button onClick={fetchTours} className="refresh-btn">Refresh</button>
+            </div>
+        );
+    }
+
+    //Render the list of tours
+    return (
+        <section className="tour-list">
+            {tours.map((tour) => {
+                return (
+                    <TourCard
+                        key={tour.id} 
+                        {...tour} 
+                        onRemove={onRemove} 
+                    />
+                );
+            })}
+        </section>
+    );
+};
+
+export default TourList;
