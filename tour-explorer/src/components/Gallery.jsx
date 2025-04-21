@@ -36,7 +36,9 @@ const TourList = ({ tours, setTours, onRemove }) => {
         return <h2>Something went wrong.</h2>;
     }
 
-    //Render if there are no tours available
+    //Render if there are no tours available //I added this part already for task 4 so here is the comment for it
+    //If the tours array is empty, show a message and a button to refresh
+    //This is a good user experience as it allows the user to refresh the list of tours
     if (tours.length === 0) {
         return (
             <div className="no-tours">
